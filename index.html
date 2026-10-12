@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neville Atkinson</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800;900&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: a sticky bar with the draft notice and the tabs; each tab is its own page; the home tab opens on a deep river teal block with his name and the three doors. */
+:root {
+  --ground: #F1F4EF;
+  --surface: #E5ECE6;
+  --ink: #13221F;
+  --muted: #4B5D58;
+  --rule: #C6D2CA;
+  --river: #0E3937;
+  --river-deep: #0A2B2A;
+  --river-ink: #E8F1EC;
+  --river-muted: #A9C2BA;
+  --gold: #E0AE45;
+  --gold-text: #7D5710;
+  --draft-ink: #2A1D04;
+  --display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+  --measure: 40rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0B1615;
+    --surface: #11211F;
+    --ink: #E3ECE8;
+    --muted: #9DB0AA;
+    --rule: #23403B;
+    --river: #0E3937;
+    --river-deep: #082423;
+    --river-ink: #E8F1EC;
+    --river-muted: #A9C2BA;
+    --gold: #E6B654;
+    --gold-text: #E6B654;
+    --draft-ink: #2A1D04;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #0B1615;
+  --surface: #11211F;
+  --ink: #E3ECE8;
+  --muted: #9DB0AA;
+  --rule: #23403B;
+  --river: #0E3937;
+  --river-deep: #082423;
+  --river-ink: #E8F1EC;
+  --river-muted: #A9C2BA;
+  --gold: #E6B654;
+  --gold-text: #E6B654;
+  --draft-ink: #2A1D04;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+.wrap { max-width: 72rem; margin-inline: auto; padding-inline: 1.25rem; }
+@media (min-width: 48rem) { .wrap { padding-inline: 2.5rem; } }
+
+/* Sticky bar: draft notice and tabs */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; }
+.draft {
+  background: var(--gold);
+  color: var(--draft-ink);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.draft .wrap { padding-block: 0.45rem; }
+.tabs { background: var(--river-deep); color: var(--river-ink); }
+.tabs .wrap { padding-inline: 0; }
+@media (min-width: 48rem) { .tabs .wrap { padding-inline: 2.5rem; } }
+.tabs ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 1.25rem;
+  display: flex;
+  gap: 0.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+@media (min-width: 48rem) { .tabs ul { padding: 0; } }
+.tabs ul::-webkit-scrollbar { display: none; }
+.tabs a {
+  display: block;
+  white-space: nowrap;
+  text-decoration: none;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 0.8rem;
+  color: var(--river-muted);
+  border-bottom: 3px solid transparent;
+}
+.tabs a:hover { color: var(--river-ink); }
+.tabs a[aria-current="page"] { color: var(--river-ink); border-bottom-color: var(--gold); }
+
+/* Home */
+.open { background: var(--river); color: var(--river-ink); }
+.open .wrap { padding-block: 3.5rem 3.5rem; display: grid; gap: 2.5rem; }
+@media (min-width: 48rem) { .open .wrap { padding-block: 5.5rem 5rem; } }
+.place {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--river-muted);
+  margin: 0;
+}
+.name {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(3.25rem, 12vw, 8.75rem);
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  margin: 0.75rem 0 0;
+  text-wrap: balance;
+}
+.line {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 4.6vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--gold);
+  margin: 1rem 0 0;
+}
+.who {
+  max-width: 36rem;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  line-height: 1.5;
+  margin: 0;
+}
+.doors { display: grid; gap: 1.5rem; }
+@media (min-width: 48rem) { .doors { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; } }
+.door {
+  display: grid;
+  gap: 0.4rem;
+  text-decoration: none;
+  border-top: 2px solid var(--gold);
+  padding-top: 1rem;
+  min-width: 0;
+}
+.door strong { font-family: var(--display); font-weight: 800; font-size: 1.35rem; line-height: 1.15; }
+.door span { color: var(--river-muted); font-size: 1rem; line-height: 1.45; }
+.door:hover strong { text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 0.2em; text-decoration-thickness: 2px; }
+
+/* Inner pages */
+.page > .wrap { padding-block: 3.5rem 4rem; display: grid; gap: 2rem; }
+@media (min-width: 48rem) { .page > .wrap { padding-block: 5rem 5.5rem; } }
+.label {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  margin: 0;
+}
+.head { display: grid; gap: 0.75rem; }
+h2 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+h3 { font-family: var(--display); font-weight: 800; font-size: 1.35rem; line-height: 1.2; margin: 0; text-wrap: balance; }
+h4 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  margin: 0;
+}
+p { margin: 0; max-width: var(--measure); }
+
+.story { display: grid; gap: 1.1rem; }
+.story p { font-size: clamp(1.15rem, 2vw, 1.3rem); line-height: 1.55; }
+
+.voice { display: grid; gap: 2rem; border-top: 1px solid var(--rule); padding-top: 2rem; }
+.voice blockquote { margin: 0; max-width: 38rem; }
+.voice blockquote p {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+}
+.voice blockquote p::before, .serves::before { content: "\201C"; color: var(--gold-text); }
+.voice blockquote p::after, .serves::after { content: "\201D"; color: var(--gold-text); }
+
+.thesis { background: var(--river); color: var(--river-ink); padding: 2rem 1.5rem; }
+@media (min-width: 48rem) { .thesis { padding: 3rem 3rem; } }
+.thesis h4 { color: var(--gold); }
+.thesis p {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  max-width: 30ch;
+  margin-top: 1rem;
+}
+
+.values { list-style: none; margin: 0; padding: 0; display: grid; }
+.values li { display: grid; gap: 0.25rem; padding-block: 1.1rem; border-bottom: 1px solid var(--rule); }
+.values li:first-child { border-top: 1px solid var(--rule); }
+@media (min-width: 40rem) { .values li { grid-template-columns: minmax(0, 16rem) minmax(0, 1fr); gap: 2rem; align-items: baseline; } }
+.values strong { font-family: var(--display); font-weight: 800; font-size: 1.15rem; }
+.values span { color: var(--muted); font-style: italic; }
+
+.serves {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+  line-height: 1.3;
+  max-width: 40rem;
+}
+.work { display: grid; gap: 2.5rem; }
+@media (min-width: 64rem) { .work { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; } }
+.work article { display: grid; gap: 0.9rem; align-content: start; border-top: 2px solid var(--ink); padding-top: 1rem; min-width: 0; scroll-margin-top: 7rem; }
+.work article p { font-size: 1.05rem; }
+.work article p b { font-family: var(--display); font-weight: 800; }
+
+.areas { display: grid; gap: 3rem; }
+@media (min-width: 48rem) { .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.area { display: grid; gap: 0.75rem; align-content: start; min-width: 0; border-top: 1px solid var(--rule); padding-top: 1.25rem; }
+.area .tag { font-family: var(--display); font-weight: 700; font-size: 0.95rem; color: var(--gold-text); }
+.area .when { font-weight: 600; }
+.area ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.5rem; color: var(--muted); }
+.area ul ul { margin-top: 0.4rem; }
+.area li { max-width: var(--measure); }
+.area li b { color: var(--ink); font-weight: 600; }
+
+.record { list-style: none; margin: 0; padding: 0; display: grid; }
+.record li { padding-block: 0.85rem; border-bottom: 1px solid var(--rule); max-width: 44rem; }
+.record li:first-child { border-top: 1px solid var(--rule); }
+.todo { color: var(--gold-text); font-style: italic; }
+
+.next { border-top: 1px solid var(--rule); padding-top: 1.25rem; }
+.next a {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-bottom: 2px solid var(--gold);
+}
+
+footer { background: var(--river-deep); color: var(--river-muted); }
+footer .wrap { padding-block: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; font-size: 0.95rem; }
+footer strong { color: var(--river-ink); font-family: var(--display); font-weight: 800; }
+</style>
+
+<div class="bar">
+  <div class="draft" role="note"><div class="wrap">Draft for Neville to read</div></div>
+  <nav class="tabs" aria-label="Sections">
+    <div class="wrap">
+      <ul>
+        <li><a href="#home" data-tab>Home</a></li>
+        <li><a href="#story" data-tab>His story</a></li>
+        <li><a href="#believes" data-tab>What he believes</a></li>
+        <li><a href="#work" data-tab>Work with Neville</a></li>
+        <li><a href="#areas" data-tab>What he works on</a></li>
+        <li><a href="#record" data-tab>His record</a></li>
+        <li><a href="#contact" data-tab>Get in touch</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<main>
+
+  <section id="home" data-panel aria-label="Home">
+    <div class="open">
+      <div class="wrap">
+        <div>
+          <p class="place">Goulburn Valley, Victoria</p>
+          <h1 class="name">Neville Atkinson</h1>
+          <p class="line">Regional prosperity for all.</p>
+        </div>
+        <p class="who">A Goulburn Valley man of Yorta Yorta and Dja Dja Wurrung heritage who has led his community all his life.</p>
+        <div class="doors">
+          <a class="door" href="#government"><strong>Government</strong><span>Advice on planning and delivering with a whole region and its Traditional Owners.</span></a>
+          <a class="door" href="#business"><strong>Business and partners</strong><span>A partner who gets in with your business and opens the doors it needs.</span></a>
+          <a class="door" href="#community"><strong>Community and entrepreneurs</strong><span>A mentor and champion for people building something in their own region.</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="page" data-panel hidden aria-labelledby="story-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">His story</p>
+        <h2 id="story-h">It is time.</h2>
+      </div>
+      <div class="story">
+        <p>His passion is prosperity for the whole community, and he knows the key is enabling Aboriginal people and Traditional Owners to step in.</p>
+        <p>Not enough is happening fast enough, so he's stepping in harder and bigger, using his own projects to prove that when Traditional Owners own, invest and lead, the whole region thrives.</p>
+        <p>He is putting his own name and stake on the line, leading community ownership of farms and businesses, bringing neighbouring nations together, and backing the healing of upside down country.</p>
+        <p>The outcome is prosperity, with the whole community lifted: land, farms and businesses across the region owned and run by local people, Traditional Owners among them, with the country healed and the money, the jobs and the young people staying in the towns.</p>
+      </div>
+      <div class="voice">
+        <h4>Be honest about the past. Build the future together.</h4>
+        <blockquote><p>I am not trying to paint Aboriginal people as victims, but if we ignore our history then we are doomed to repeat it.</p></blockquote>
+        <blockquote><p>Our shared history has not always been great but we continue to work together to forge a future of genuine social and economic equality for all.</p></blockquote>
+      </div>
+      <p class="next"><a href="#believes">Next: What he believes</a></p>
+    </div>
+  </section>
+
+  <section id="believes" class="page" data-panel hidden aria-labelledby="believes-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">What he believes</p>
+        <h2 id="believes-h">Everyone is lifted.</h2>
+      </div>
+      <div class="thesis">
+        <h4>The thesis</h4>
+        <p>When a whole community owns, invests and builds together, with Traditional Owners stepping in to lead where they can, the prosperity stays in the region and everyone is lifted.</p>
+      </div>
+      <div class="head">
+        <h4>His values</h4>
+      </div>
+      <ul class="values">
+        <li><strong>Stronger together</strong><span>The power that comes from standing together.</span></li>
+        <li><strong>Common interest</strong><span>Mutual benefits to help all good people.</span></li>
+        <li><strong>The people whose Country it is decide</strong><span>Let the Traditional Owners decide.</span></li>
+        <li><strong>For our children</strong><span>Leave a better place for our children.</span></li>
+        <li><strong>Get on with it</strong><span>When do we get started?</span></li>
+      </ul>
+      <p class="next"><a href="#work">Next: Work with Neville</a></p>
+    </div>
+  </section>
+
+  <section id="work" class="page" data-panel hidden aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Work with Neville</p>
+        <h2 id="work-h">Five ways to work with him.</h2>
+      </div>
+      <p class="serves">I will connect the opportunities with all my relationships for mutual benefits to help all good people.</p>
+      <div class="work">
+        <article id="government">
+          <h3>Government</h3>
+          <p><b>Adviser.</b> To governments and departments at every level: how to plan and deliver with a whole region and its Traditional Owners. Twelve years with the catchment authorities.</p>
+          <p><b>Board member.</b> He chairs Rumbalara and sits on YYNAC's board, and brings governance and a long view.</p>
+        </article>
+        <article id="business">
+          <h3>Business and partners</h3>
+          <p><b>Adviser.</b> To business: how to plan and deliver with a whole region and its Traditional Owners.</p>
+          <p><b>Partner.</b> He'll get in with your business, put his name and stake beside yours, and open the doors it needs.</p>
+          <p><b>Connector.</b> He brings together the people a project needs: nations, councils, agencies, farmers and investors.</p>
+        </article>
+        <article id="community">
+          <h3>Community and entrepreneurs</h3>
+          <p><b>Mentor.</b> He backs entrepreneurs to build businesses in their own regions.</p>
+        </article>
+      </div>
+      <p class="next"><a href="#areas">Next: What he works on</a></p>
+    </div>
+  </section>
+
+  <section id="areas" class="page" data-panel hidden aria-labelledby="areas-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">What he works on</p>
+        <h2 id="areas-h">Eight areas. One region lifted.</h2>
+      </div>
+      <div class="areas">
+
+        <article class="area">
+          <h3>Ownership</h3>
+          <p class="when">When the people of a region own its land and businesses, with partners who come in for the long run, the decisions, the profits and the jobs stay local.</p>
+          <ul>
+            <li><b>Farms can stay in local hands.</b> Local farms, owned by the local community, with the people whose Country it is stepping in to lead where they can.</li>
+            <li><b>Retiring farmers</b> keep their farm in local hands and stay in control of what happens to it.</li>
+          </ul>
+        </article>
+
+        <article class="area">
+          <h3>Entrepreneurs</h3>
+          <p class="when">When local entrepreneurs are backed to start and grow businesses in their own region, the region makes its own jobs, and young people have a reason to stay.</p>
+          <ul>
+            <li>He inspires and champions local people, Aboriginal entrepreneurs among them, mentors them, and connects them to the partners and doors they need.</li>
+            <li>Businesses across a region working together.</li>
+          </ul>
+        </article>
+
+        <article class="area">
+          <h3>Agriculture</h3>
+          <p class="when">When farms pass into local hands, new farmers get their start, and the land is left healthier than it was, farming stays local and the whole industry is lifted.</p>
+          <ul>
+            <li><b>Farms stay in local hands.</b> Retiring farmers keep their farm in the community through a community land trust, and stay in control of what happens to it.</li>
+            <li><b>Locals farming.</b> Sharefarming gives young local farmers their start, working the land alongside the landholder.</li>
+            <li><b>Regenerative farming.</b> Climate smart, regenerative land management that cares for Country and people, using traditional knowledge such as cultural burning alongside new practice. Aboriginal farmers help lead the way for every farmer.</li>
+          </ul>
+        </article>
+
+        <article class="area">
+          <h3>Upside down country fixed</h3>
+          <p class="tag">Clean it up. Recover what's in it. Process it here.</p>
+          <p class="when">When a region cleans up its upside down country and recovers the critical minerals still in the old workings, the land comes back into use, the nation gets minerals it needs, and the jobs stay in the old mining towns.</p>
+          <ul>
+            <li><b>Clean it up.</b> Old sites cleaned up, arsenic out of the soil and water, and the land back in use for farming, nature and tourism.</li>
+            <li><b>Recover what's in it.</b> Critical minerals for energy, defence and AI are already sitting on the surface, with no new pit needed. What's recovered pays for the clean-up.</li>
+            <li><b>Traditional Owners at the table from the start, on their Country.</b> They lead where they can, with local workers and businesses doing the work.</li>
+          </ul>
+        </article>
+
+        <article class="area">
+          <h3>Manufacturing</h3>
+          <p class="tag">Process it here.</p>
+          <p class="when">When processing comes back to the land, powered by the region's own energy and new technology, things are built here again, and the value and the skilled jobs stay local.</p>
+          <ul>
+            <li><b>Things built here again.</b> With new technology, a district can make most of what it needs locally, and trade the rest with trusted partners.</li>
+            <li><b>Food and fibre made here.</b> Meat, wool, dairy and native foods processed in the region again.</li>
+            <li><b>Nothing wasted.</b> Farm and food waste turned into energy and fertiliser, and old solar panels turned back into materials.</li>
+          </ul>
+        </article>
+
+        <article class="area">
+          <h3>Tourism</h3>
+          <p class="when">When a region joins up its towns, farms, parks and Country into one journey worth travelling for, visitors stay longer and the money spreads through every town.</p>
+          <ul>
+            <li><b>One region, one journey.</b> Places too far from the cities to draw people on their own, joined up across many nations' Country, so the whole region is worth the trip.</li>
+            <li><b>Stays on farms and in towns.</b> Accommodation spread across the region, housing workers in the week and visitors at weekends and holidays.</li>
+            <li><b>Nature, culture and food.</b> Parks, wetlands, rivers, local food, and Aboriginal cultural experiences led by the people whose Country it is.</li>
+          </ul>
+        </article>
+
+        <article class="area">
+          <h3>AI</h3>
+          <p class="when">When a regional community takes up AI early and owns its tools and its data, distance stops holding it back, a small town can take on the world, and help reaches the people who need it most.</p>
+          <ul>
+            <li><b>Distance no longer decides.</b> With AI, a farmer, a business owner or a young person can do world-class work from their own town.</li>
+            <li><b>AI for the people who need it most.</b>
+              <ul>
+                <li>Older people staying in their own homes and towns, with AI check-ins and telehealth.</li>
+                <li>People with disability making their own job, with AI doing the heavy lifting.</li>
+                <li>Anyone getting the support they're entitled to, without the paperwork.</li>
+              </ul>
+            </li>
+            <li><b>Next, as trials.</b> Transport for people who can't drive, and medicine by drone to outlying towns.</li>
+            <li><b>Communities own it.</b> Towns and Traditional Owners own their tools and keep their data. At Kakadu, rangers flew the drones, Traditional Owners held the data, and magpie geese came back from 50 to 1,800 in nine months.</li>
+          </ul>
+        </article>
+
+        <article class="area">
+          <h3>Ground Truth</h3>
+          <p class="when">When a community asks itself what it values and what its land and water need, and holds the answer as its own record, every plan for the region can be built from it, and it lasts beyond any change of government.</p>
+          <ul>
+            <li><b>The community asking itself.</b> Everyone in a place says what they value and what the land and water need.</li>
+            <li><b>One record, owned locally.</b> The answer belongs to the community, and knowledge of Country stays with the people whose Country it is.</li>
+            <li><b>Plans built from it.</b> Councils, agencies, investors and the community's own plans all start from the same record, so the work lasts across elections.</li>
+          </ul>
+        </article>
+
+      </div>
+      <p class="next"><a href="#record">Next: His record</a></p>
+    </div>
+  </section>
+
+  <section id="record" class="page" data-panel hidden aria-labelledby="record-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">His record</p>
+        <h2 id="record-h">A lifetime of leading.</h2>
+      </div>
+      <ul class="record">
+        <li>Early career at Peat Marwick, the Victorian Aboriginal Legal Service, and the Aboriginal deaths in custody research and investigation team.</li>
+        <li>Key witness in the Yorta Yorta native title trial, 1997.</li>
+        <li>Chair of the Yorta Yorta Nation Aboriginal Corporation around 2010, and still a director.</li>
+        <li>United Nations Permanent Forum on Indigenous Issues, New York, 2010.</li>
+        <li>Twelve years with the catchment management authority, advising councils, agencies and communities.</li>
+        <li>Built the East West Alliance, bringing grower businesses from five nations together with industry partners.</li>
+        <li>Co-founder of Outback Academy Australia, now its Cultural Advisor.</li>
+        <li>Chair of Rumbalara Aboriginal Co-operative, and director of its housing company.</li>
+        <li>Associate Professor, La Trobe University.</li>
+        <li class="todo">Neville to add: his Aussie rules football, club and years.</li>
+      </ul>
+      <p class="next"><a href="#contact">Next: Get in touch</a></p>
+    </div>
+  </section>
+
+  <section id="contact" class="page" data-panel hidden aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Get in touch</p>
+        <h2 id="contact-h">Talk with Neville.</h2>
+      </div>
+      <p class="todo">Neville's contact details go here, once he chooses how he'd like to be reached.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><strong>Neville Atkinson</strong>, Goulburn Valley, Victoria</span>
+    <span>Draft, 12 October 2026</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var panels = Array.prototype.slice.call(document.querySelectorAll("[data-panel]"));
+  var tabs = Array.prototype.slice.call(document.querySelectorAll("[data-tab]"));
+  function show(id) {
+    var target = id ? document.getElementById(id) : null;
+    var panel = target ? (target.hasAttribute("data-panel") ? target : target.closest("[data-panel]")) : null;
+    if (!panel) { panel = panels[0]; target = null; }
+    panels.forEach(function (p) { p.hidden = p !== panel; });
+    tabs.forEach(function (t) {
+      if (t.getAttribute("href") === "#" + panel.id) { t.setAttribute("aria-current", "page"); t.scrollIntoView({ block: "nearest", inline: "nearest" }); }
+      else { t.removeAttribute("aria-current"); }
+    });
+    if (target && target !== panel) { target.scrollIntoView({ block: "start" }); }
+    else { window.scrollTo(0, 0); }
+  }
+  window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
+  show(location.hash.slice(1));
+})();
+</script>
+
+</html>
